@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #336e7f; */
+    height: 100vh;
+    width: 100%;
+    background-image: radial-gradient(#fdeb82, #336e7f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.timer {
+    /* border: 3px solid rgb(56, 56, 56); */
+    width: 300px;
+    height: 450px;
+    border-radius: 50px;
+    background-color: rgba(33, 33, 33, 0.527);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 0px 14px 6px rgba(253, 250, 162, 0.902);
+}
+
+#countdown {
+    margin: 10px;
+    font-size: 50px;
+    color: white;
+}
+
+.buttons {
+    /* border: 1px solid white; */
+    margin: 10px;
+    height: 300px;
+    width: 260px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    width: 200px;
+    color: aliceblue;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.div1 {
+    height: 90px;
+    width: 240px;
+    /* border: 1px solid white; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.div1 .btn1:hover {
+    background-color: rgb(14, 177, 25);
+}
+
+.div1 .btn2:hover {
+    background-color: rgb(19, 57, 211);
+}
+
+.div2 {
+    /* border: 1px solid white; */
+    height: 90px;
+    width: 240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.div2 .btn3:hover {
+    background-color: red;
+}
+
+.div2 .btn4:hover {
+    background-color: rgb(185, 177, 23);
+}
+
+.div3 {
+    /* border: 1px solid white; */
+    height: 90px;
+    width: 240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.div3 .btn {
+    width: 220px;
+    color: aliceblue;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+
+}
+
+.div3 .btn5:hover {
+    background-color: orange;
+}
+
+
+/* Timelapse div container --- */
+.resetvalue {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 20px;
+    overflow-y: scroll;
+}
