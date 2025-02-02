@@ -1,55 +1,79 @@
-const countDownElement = document.getElementById("countdown");
-const resetValueEement = document.querySelector(".resetvalue");
-let startCount = 0;
-let startId;
-//function to start timer
+let countdown = document.getElementById("countdown");
+let startBtn = document.querySelector(".start_btn");
+let stopBtn = document.querySelector(".stop_btn");
+let resetBtn = document.querySelector(".reset_btn");
+let lapBtn = document.querySelector(".lap_btn");
+let clearBtn = document.querySelector(".clear_btn");
+let resetValue = document.querySelector(".resetvalue");
 
+let hours = 0;
+let minutes = 0;
+let seconds = 0;
+let timer = null;
+let isRunning = false;
+
+// Function to update the display
+const updateDisplay = () => {
+  countdown.textContent = 
+    (hours < 10 ? "0" : "") + hours + ":" + 
+    (minutes < 10 ? "0" : "") + minutes + ":" + 
+    (seconds < 10 ? "0" : "") + seconds;
+}
+
+// Function to start the timer
 const startTimer = () => {
-   startId = setInterval(() => {
-    countDownElement.innerText = startCount++;
-  }, 1000);
-};
-
-//Function to stop the timer
-const stopTimer = () => {
-    clearInterval(startId);
+  if (!isRunning) {
+    isRunning = true;
+    timer = setInterval(() => {
+      seconds++;
+      if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes === 60) {
+          minutes = 0;
+          hours++;
+        }
+      }
+      updateDisplay();
+    }, 1000);
+  }
 }
 
-//function to reset
-const resetTimer = () => {
-    startCount = 0;
-    countDownElement.innerText = startCount;
-    clearInterval(startId);
-
+// Function to stop the timer
+function stopTimer() {
+  clearInterval(timer);
+  isRunning = false;
 }
 
-//funtions to time lapse
-
-const timeLapse = () => {
-    const newParagraph = document.createElement("p");
-    newParagraph.innerText = `The stop time is ${startCount - 1}`
-    resetValueEement.append(newParagraph);
+// Function to reset the timer
+function resetTimer() {
+  stopTimer();
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
+  updateDisplay();
 }
 
-//function to clear time out
-
-const clearTimeout = () => {
-    resetValueEement.innerHTML = " ";
+// Function to record a lap time
+function recordLap() {
+  if (isRunning) {
+    let lapTime = document.createElement("p");
+    lapTime.textContent = countdown.textContent;
+    resetValue.appendChild(lapTime);
+  }
 }
 
+// Function to clear all lap times
+function clearLaps() {
+  resetValue.innerHTML = "";
+}
 
+// Event listeners for buttons
+startBtn.addEventListener("click", startTimer);
+stopBtn.addEventListener("click", stopTimer);
+resetBtn.addEventListener("click", resetTimer);
+lapBtn.addEventListener("click", recordLap);
+clearBtn.addEventListener("click", clearLaps);
 
-//event to start
-document.querySelector(".start_btn").addEventListener("click", startTimer);
-
-//event to stop
-document.querySelector(".stop_btn").addEventListener("click", stopTimer);
-
-//event to reset
-document.querySelector(".reset_btn").addEventListener("click", resetTimer);
-
-//event to lapse
-document.querySelector(".lap_btn").addEventListener("click" , timeLapse);
-
-//event to clear all
-document.querySelector(".clear_btn").addEventListener("click", clearTimeout);
+// Initialize display
+updateDisplay();
